@@ -1,29 +1,26 @@
 <?php
 
-
-declare(strict_types=1);
-
 namespace App\Models;
 
 use App\Models\Subscription;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-
-class Service extends Model
+class Customer extends Model
 {
     protected $fillable = [
+        'customer_id',
         'name',
-        'price',
-        'description',
-        'status'
+        'email',
+        'phone',
+        'address',
+        'status',
     ];
 
     protected function casts(): array
     {
         return [
             'status' => 'boolean',
-            'price' => 'integer',
         ];
     }
 
@@ -31,4 +28,4 @@ class Service extends Model
     {
         return $this->hasMany(Subscription::class);
     }
- }
+}
