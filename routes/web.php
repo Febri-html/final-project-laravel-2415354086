@@ -36,13 +36,6 @@ Route::post('/customers-store', function (Request $request) {
     ]);
     return back();
 });
-Route::put('/customers-setstatus/{id}', function (Request $request, $id) {
-    Service::findOrFail($id)->update([
-        'status' => $request->status
-    ]);
-
-    return back();
-});
 
 Route::put('/customers-update/{id}', function (Request $request, $id) {
     $customer = Customer::findOrFail($id);
@@ -57,11 +50,18 @@ Route::put('/customers-update/{id}', function (Request $request, $id) {
     return back();
 });
 
+Route::put('/customers-setstatus/{id}', function (Request $request, $id) {
+    Customer::findOrFail($id)->update([
+        'status' => $request->status
+    ]);
+
+    return back();
+});
+
 Route::delete('/customers-delete/{id}', function ($id) {
     Customer::find($id)?->delete();
     return back();
 });
-
 /*
 |--------------------------------------------------------------------------
 | SERVICE
