@@ -149,6 +149,16 @@ class ServiceController extends Controller
         ]);
     }
 
+    public function setStatus(Request $request, $id)
+{
+    $service = Service::findOrFail($id);
+
+    $service->status = $request->status;
+    $service->save();
+
+    return redirect()->back();
+}
+
     public function deactivate(int $service): JsonResponse
     {
         $service = Service::query()->find($service);
